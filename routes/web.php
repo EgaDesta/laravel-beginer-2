@@ -1,6 +1,10 @@
 <?php
 
+use App\Models\post;
+use App\Http\Controllers\PostController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,70 +32,31 @@ Route::get('/abaut', function () {
 });
 
 
-Route::get('/blog', function () {
-    $blog_posts = [
-        [
-            'judul' => 'Judul Post Pertama',
-            'slug'  => 'judul-post-pertama',
-            'penulis' => 'Vinxx',
-            'tanggal' => '12 Desember 2021',
-            'body'   => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ab dolore sit ipsam nam tenetur similique fugit, laborum expedita pariatur, provident, nemo libero quidem placeat iure minus harum voluptatem 
-            quia consequuntur? Dolores accusamus nobis, vero odit illum laborum reiciendis! Odit maiores dignissimos laborum eius cumque? Voluptatibus quae iusto corrupti necessitatibus, dignissimos,
-             impedit commodi ad aliquid cumque totam facilis, quo facere officiis rem consequatur. Harum sunt officia, consectetur aut laboriosam ut similique reiciendis impedit illum modi blanditiis fugit rerum facilis dolor'
-        ],
-        [
-            'judul' => 'Judul Post Kedua',
-            'slug'  => 'judul-post-kedua',
-            'penulis' => 'John Doe',
-            'tanggal' => '10 Januari 2022',
-            'body' => '
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ipsam nesciunt rem aperiam accusantium sequi expedita. Totam cupiditate vero velit architecto dicta. Similique voluptate sint dolor nemo consequuntur impedit
-            tenetur perferendis architecto magni voluptates, vel repudiandae beatae eum quibusdam quidem, mollitia blanditiis delectus natus dicta illo pariatur alias veniam. Fuga debitis eius aliquam exercitationem adipisci, quia ratione.
-            Officia deserunt in tempore fuga impedit. Iusto harum dolorem et. Itaque molestias alias quos voluptate dolore magnam recusandae. Quidem quis ullam cum inventore tenetur ab eligendi nulla sint qui molestiae ad, laborum dolorum!'
-        ]
-        ];
-    return view('Post',[
-        'title'=>'post',
-        'post'=> $blog_posts//jadi  variabel yang di gunakan bukan yang blog_post tapi hanya yang post karena blog_post belum terdeteksi sedangkan post sudah terdeteksi.
-    ]);
-});
-
-
+//jadi  variabel yang di gunakan bukan yang blog_post tapi hanya yang post karena blog_post belum terdeteksi sedangkan post sudah terdeteksi.
+Route::get('/blog',[PostController::class, 'index'] );
 
 //halaman singgel post
 
-Route::get('blog/{slug}', function($slug){
-    $blog_posts = [
-        [
-            'judul' => 'Judul Post Pertama',
-            'slug'  => 'judul-post-pertama',
-            'penulis' => 'Vinxx',
-            'tanggal' => '12 Desember 2021',
-            'body'   => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ab dolore sit ipsam nam tenetur similique fugit, laborum expedita pariatur, provident, nemo libero quidem placeat iure minus harum voluptatem 
-            quia consequuntur? Dolores accusamus nobis, vero odit illum laborum reiciendis! Odit maiores dignissimos laborum eius cumque? Voluptatibus quae iusto corrupti necessitatibus, dignissimos,
-             impedit commodi ad aliquid cumque totam facilis, quo facere officiis rem consequatur. Harum sunt officia, consectetur aut laboriosam ut similique reiciendis impedit illum modi blanditiis fugit rerum facilis dolor'
-        ],
-        [
-            'judul' => 'Judul Post Kedua',
-            'slug'  => 'judul-post-kedua',
-            'penulis' => 'John Doe',
-            'tanggal' => '10 Januari 2022',
-            'body' => '
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ipsam nesciunt rem aperiam accusantium sequi expedita. Totam cupiditate vero velit architecto dicta. Similique voluptate sint dolor nemo consequuntur impedit
-            tenetur perferendis architecto magni voluptates, vel repudiandae beatae eum quibusdam quidem, mollitia blanditiis delectus natus dicta illo pariatur alias veniam. Fuga debitis eius aliquam exercitationem adipisci, quia ratione.
-            Officia deserunt in tempore fuga impedit. Iusto harum dolorem et. Itaque molestias alias quos voluptate dolore magnam recusandae. Quidem quis ullam cum inventore tenetur ab eligendi nulla sint qui molestiae ad, laborum dolorum!'
-        ]
-        ];
+Route::get('blog/{post:slug}', [PostController::class,'show']);
 
-foreach($blog_posts as $post){
-    if($post['slug']===$slug)
-    $new_post = $post;
-}
+route::get('/blog', function(){
+    return view('Post',[
+        'title' => 'Halaman Post',
+        'posts' => Post::all() 
+       ]);
+});
 
-    return view('pst',[
-        "title" => "Single Post",
-        'pst'=> $blog_posts,
-        'post' =>$new_post
+route::get('/categories', function(){
+    return view('categories',[
+        'title' => 'Post Categories',
+        'categories' => Category::all() 
+       ]);
+});
+
+Route::get('/categories/{category:slug}', function(Category $category){
+    return view('category',[
+        'title' => $category->name,
+        'posts' => $category->posts,
+        'category' => $category->name
     ]);
-
 });

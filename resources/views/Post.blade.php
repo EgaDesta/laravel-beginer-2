@@ -1,40 +1,37 @@
-{{-- @dd($post) --}}
+{{-- @dd($post)
 @extends('layouts.main')
 @section('container')
 
     <h1>Halaman Post</h1>
-@foreach ($post as $pst)
+@foreach ($posts as $post)
 
-<article mb-5>
-    <h2>
-        <a href="/blog/{{ $pst['slug'] }}">
-            {{ $pst['judul'] }}
-        </a>
-    </h2>
-            <h5>{{ $pst['penulis'] }}</h5>
-    <p>{{ $pst['tanggal'] }}</p>
-    <p>{{ $pst['body'] }}</p>
+<article class="mb-5 border-bottom">
+
+    <h2><a href="/blog/{{ $post->slug }}" class="text-decoration-none">{{ $post->title }}</a></h2>
+
+    <p>By. Ega Destaviano in <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none">{{  $pst->category->name  }}</a></p>
+
+    <p>{{ $pst->excerpt }}</p>
+    <a href="/posts/{{ $post->slug }}"class="text-decoration-none">Read More..</a>
 </article>
 
-
 @endforeach
-{{-- <a href="/blog">Kembali ke Blog</a> --}}
 
-{{-- <p id="teksPendek">Ini adalah teks pendek... <a href="#" id="bacaLebih">Baca Lebih Lanjut</a></p>
-<p id="teksPanjang" style="display: none;">Ini adalah teks panjang yang akan ditampilkan saat pengguna mengklik "Baca Lebih Lanjut".</p>
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>
-$(document).ready(function() {
-    $("#bacaLebih").click(function() {
-        $("#teksPendek").hide();
-        $("#teksPanjang").show();
-    });
-}); --}}
-{{-- </script> --}}
+@endsection --}}
 
 
+@extends('layouts.main')
+@section('container')
+    <h1>Halaman Post</h1>
 
     
-
+@foreach ($posts as $post)
+{{-- @dd($post->category); --}}
+<article class="mb-5 border-bottom">
+    <h2><a href="/blog/{{ $post->slug }}" class="text-decoration-none">{{ $post->title }}</a></h2>
+    <p>By. Ega Destaviano in <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none">{{  $post->category?->name  }}</a></p>
+    <p>{{ $post->excerpt }}</p>
+    <a href="/blog/{{ $post->slug }}"class="text-decoration-none">Read More..</a>
+</article>
+@endforeach
 @endsection
