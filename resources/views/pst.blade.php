@@ -13,9 +13,9 @@
 @section('container')
 <article>
     <h2>{{ $posts->title }}</h2>
-    <p>By. Ega Destaviano in <a href="/categories/{{ $posts->category->slug }}"class="text-decoration-none">{{  $posts->category->name  }}</a></p>
+    <p>By. <a href="#"class="text-decoration-none">{{ $posts->user->name }}</a> in <a href="/categories/{{ $posts->category->slug }}"class="text-decoration-none">{{  $posts->category->name  }}</a></p>
     {!! $posts->body !!}
-    <a href="/blog"class="text-decoration-none">Kembali ke Blog</a>
+    <a href="/blog"class="text-decoration-none d-block mt-3">Kembali ke Blog</a>
 </article>
 @endsection
  

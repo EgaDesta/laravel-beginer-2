@@ -30,6 +30,12 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('1234')
         ]);
 
+        user::create([
+            'name' => 'Asep Bagio',
+            'email' => 'Aspwd@gmail.com',
+            'password' => bcrypt('1234')
+        ]);
+
         Category::create([
             'name' => 'Web vinxx',
             'slug' => 'web-vinxx'
@@ -66,6 +72,14 @@ class DatabaseSeeder extends Seeder
             'body'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing Lorem ipsum dolor sit, amet consectetur adipisicing elit. A hic perspiciatis qui unde quia eum optio dolorem quis! Nisi, animi?',
             'category_id' => 2,
             'user_id' => 1
+        ]);
+        post::create([
+            'title' =>  'Judul Keempat',
+            'slug' => 'judul-kempat',
+            'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, sunt?',
+            'body'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing Lorem ipsum dolor sit, amet consectetur adipisicing elit. A hic perspiciatis qui unde quia eum optio dolorem quis! Nisi, animi?',
+            'category_id' => 2,
+            'user_id' => 2
         ]);
     }
 }
