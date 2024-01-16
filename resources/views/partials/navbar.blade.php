@@ -15,6 +15,9 @@
           <li class="nav-item">
             <a class="nav-link list-group-item active" href="/blog">Blog</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link list-group-item active" href="/categories">Category</a>
+          </li>
         </ul>
       </div>
     </div>

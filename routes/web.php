@@ -42,7 +42,7 @@ Route::get('blog/{post:slug}', [PostController::class,'show']);
 
 route::get('/blog', function(){
     return view('Post',[
-        'title' => 'AllPost',
+        'title' => 'All Post',
         'posts' => Post::all() 
        ]);
 });
