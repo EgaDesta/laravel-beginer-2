@@ -42,7 +42,7 @@ Route::get('blog/{post:slug}', [PostController::class,'show']);
 
 route::get('/blog', function(){
     return view('Post',[
-        'title' => 'Halaman Post',
+        'title' => 'AllPost',
         'posts' => Post::all() 
        ]);
 });
@@ -55,16 +55,15 @@ route::get('/categories', function(){
 });
 
 Route::get('/categories/{category:slug}', function(Category $category){
-    return view('category',[
-        'title' => $category->name,
-        'posts' => $category->posts,
-        'category' => $category->name
+    return view('post',[
+        'title' => "Post By Category :$category->name",
+        'posts' => $category->posts->load('category','author'),
     ]);
 });
 
 Route::get('/authors/{author:username}', function(User $author){
     return view('post',[
-        'title' => 'User Post',
-        'posts' => $author->posts,
+        'title' => "Post By Author : $author->name",
+        'posts' => $author->posts->load('category','author'),
     ]);
 });
