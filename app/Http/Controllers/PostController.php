@@ -11,7 +11,8 @@ class PostController extends Controller
     {
         return view('Post',[
             'title'=>'post',
-            'post'=> Post::all() // dan di sini
+            // 'post'=> Post::all() dan di sini
+            'post'=> Post::latest()->get() // dan di sini
         ]);
     }
     public function show(post $post)

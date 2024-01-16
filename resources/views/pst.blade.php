@@ -12,8 +12,9 @@
 
 @section('container')
 <article>
-    <h2>{{ $posts->title }}</h2>
-    <p>By. <a href="#"class="text-decoration-none">{{ $posts->user->name }}</a> in <a href="/categories/{{ $posts->category->slug }}"class="text-decoration-none">{{  $posts->category->name  }}</a></p>
+    {{-- @dd($posts->author->username); --}}
+    {{ $posts->title }}
+    <p>By. <a href="/authors/{{ $posts->author->username }}"class="text-decoration-none">{{ $posts->author->name }}</a> in <a href="/categories/{{ $posts->category->slug }}"class="text-decoration-none">{{  $posts->category->name  }}</a></p>
     {!! $posts->body !!}
     <a href="/blog"class="text-decoration-none d-block mt-3">Kembali ke Blog</a>
 </article>

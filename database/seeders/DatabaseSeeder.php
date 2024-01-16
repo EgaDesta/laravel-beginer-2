@@ -16,25 +16,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
+        
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        
 
-
-        user::create([
-            'name' => 'Ega Destaviano',
-            'email' => 'egafv@gmail.com',
-            'password' => bcrypt('1234')
-        ]);
-
-        user::create([
-            'name' => 'Asep Bagio',
-            'email' => 'Aspwd@gmail.com',
-            'password' => bcrypt('1234')
-        ]);
+        // user::create([
+            //     'name' => 'Ega Destaviano',
+            //     'email' => 'egafv@gmail.com',
+        //     'password' => bcrypt('1234')
+        // ]);
+        
+        // user::create([
+        //     'name' => 'Asep Bagio',
+        //     'email' => 'Aspwd@gmail.com',
+        //     'password' => bcrypt('1234')
+        // ]);
+        \App\Models\User::factory(3)->create();
 
         Category::create([
             'name' => 'Web vinxx',
@@ -46,41 +46,42 @@ class DatabaseSeeder extends Seeder
             'slug' => 'personal'
         ]);
 
+        Post::factory(20)->create();
         
 
 
-        post::create([
-            'title' =>  'Judul Pertama',
-            'slug' => 'judul-pertama',
-            'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, sunt?',
-            'body'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing Lorem ipsum dolor sit, amet consectetur adipisicing elit. A hic perspiciatis qui unde quia eum optio dolorem quis! Nisi, animi?',
-            'category_id' => 1,
-            'user_id' => 1
-        ]);
-        post::create([
-            'title' =>  'Judul Kedua',
-            'slug' => 'judul-kedua',
-            'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, sunt?',
-            'body'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing Lorem ipsum dolor sit, amet consectetur adipisicing elit. A hic perspiciatis qui unde quia eum optio dolorem quis! Nisi, animi?',
-            'category_id' => 1,
-            'user_id' => 1
-        ]);
-        post::create([
-            'title' =>  'Judul Ketiga',
-            'slug' => 'judul-ketiga',
-            'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, sunt?',
-            'body'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing Lorem ipsum dolor sit, amet consectetur adipisicing elit. A hic perspiciatis qui unde quia eum optio dolorem quis! Nisi, animi?',
-            'category_id' => 2,
-            'user_id' => 1
-        ]);
-        post::create([
-            'title' =>  'Judul Keempat',
-            'slug' => 'judul-kempat',
-            'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, sunt?',
-            'body'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing Lorem ipsum dolor sit, amet consectetur adipisicing elit. A hic perspiciatis qui unde quia eum optio dolorem quis! Nisi, animi?',
-            'category_id' => 2,
-            'user_id' => 2
-        ]);
+        // post::create([
+        //     'title' =>  'Judul Pertama',
+        //     'slug' => 'judul-pertama',
+        //     'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, sunt?',
+        //     'body'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing Lorem ipsum dolor sit, amet consectetur adipisicing elit. A hic perspiciatis qui unde quia eum optio dolorem quis! Nisi, animi?',
+        //     'category_id' => 1,
+        //     'user_id' => 1
+        // ]);
+        // post::create([
+        //     'title' =>  'Judul Kedua',
+        //     'slug' => 'judul-kedua',
+        //     'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, sunt?',
+        //     'body'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing Lorem ipsum dolor sit, amet consectetur adipisicing elit. A hic perspiciatis qui unde quia eum optio dolorem quis! Nisi, animi?',
+        //     'category_id' => 1,
+        //     'user_id' => 1
+        // ]);
+        // post::create([
+        //     'title' =>  'Judul Ketiga',
+        //     'slug' => 'judul-ketiga',
+        //     'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, sunt?',
+        //     'body'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing Lorem ipsum dolor sit, amet consectetur adipisicing elit. A hic perspiciatis qui unde quia eum optio dolorem quis! Nisi, animi?',
+        //     'category_id' => 2,
+        //     'user_id' => 1
+        // ]);
+        // post::create([
+        //     'title' =>  'Judul Keempat',
+        //     'slug' => 'judul-kempat',
+        //     'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, sunt?',
+        //     'body'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing Lorem ipsum dolor sit, amet consectetur adipisicing elit. A hic perspiciatis qui unde quia eum optio dolorem quis! Nisi, animi?',
+        //     'category_id' => 2,
+        //     'user_id' => 2
+        // ]);
     }
 }
 
