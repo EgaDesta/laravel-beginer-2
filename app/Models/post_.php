@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class post 
+class post
 {
     private static $blog_post = [
         [
@@ -33,19 +33,17 @@ class post
              quod blanditiis suscipit iste. Culpa, eius beatae. Cumque consequuntur inventore provident. Ut accusantium nam suscipit quis dolore consectetur sint obcaecati neque cum quibusdam officiis itaque excepturi saepe iure odio culpa, quam
             reiciendis repudiandae labore error nobis doloribus consequuntur? Dolor commodi, sit, enim tenetur vel maxime voluptas earum sint consequuntur id obcaecati tempora, adipisci nihil esse illum veritatis!'
         ]
-        ];
+    ];
 
-public static function all()
-{
-    return collect(self::$blog_post);
-}
+    public static function all()
+    {
+        return collect(self::$blog_post);
+    }
 
-public static function find($slug)
-{
-    $posts = static::all();
-   
-    return $posts->firstWhere('slug',$slug);
-}
+    public static function find($slug)
+    {
+        $posts = static::all();
 
-
+        return $posts->firstWhere('slug', $slug);
+    }
 }

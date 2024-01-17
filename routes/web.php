@@ -4,6 +4,7 @@ use App\Models\post;
 use App\Http\Controllers\PostController;
 use App\Models\Category;
 use App\Models\User;
+use Clockwork\Request\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,51 +20,53 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Home',[
+    return view('Home', [
         'title' => 'Home'
     ]);
 });
 Route::get('/abaut', function () {
-    return view('Abaut',[
-        'title'=>'About',
+    return view('Abaut', [
+        'title' => 'About',
         'nama' => 'vinxx',
-        'email'=> 'vincx@gmail.com',
-        'gambar'=> 'ryan_gosling(gweh_bgt).jpg'
+        'email' => 'vincx@gmail.com',
+        'gambar' => 'ryan_gosling(gweh_bgt).jpg'
     ]);
 });
 
 
 //jadi  variabel yang di gunakan bukan yang blog_post tapi hanya yang post karena blog_post belum terdeteksi sedangkan post sudah terdeteksi.
-Route::get('/blog',[PostController::class, 'index'] );
+Route::get('/blog', [PostController::class, 'index']);
+
 
 //halaman singgel post
 
-Route::get('blog/{post:slug}', [PostController::class,'show']);
+Route::get('blog/{post:slug}', [PostController::class, 'show']);
 
-route::get('/blog', function(){
-    return view('Post',[
-        'title' => 'All Post',
-        'posts' => Post::all() 
-       ]);
-});
 
-route::get('/categories', function(){
-    return view('categories',[
+
+route::get('/categories', function () {
+    return view('categories', [
         'title' => 'Post Categories',
-        'categories' => Category::all() 
-       ]);
-});
-
-Route::get('/categories/{category:slug}', function(Category $category){
-    return view('post',[
-        'title' => "Post By Category :$category->name",
-        'posts' => $category->posts->load('category','author'),
+        'categories' => Category::all()
     ]);
 });
+// route::get('/blog', function () {
+//     return view('Post', [
+//         'title' => 'All Post',
+//         'posts' => Post::all()
+//     ]);
+// });
 
-Route::get('/authors/{author:username}', function(User $author){
-    return view('post',[
-        'title' => "Post By Author : $author->name",
-        'posts' => $author->posts->load('category','author'),
-    ]);
-});
+// Route::get('/categories/{category:slug}', function (Category $category) {
+//     return view('post', [
+//         'title' => "Post By Category :$category->name",
+//         'posts' => $category->posts->load('category', 'author'),
+//     ]);
+// });
+
+// Route::get('/authors/{author:username}', function (User $author) {
+//     return view('post', [
+//         'title' => "Post By Author : $author->name",
+//         'posts' => $author->posts->load('category', 'author'),
+//     ]);
+// });
