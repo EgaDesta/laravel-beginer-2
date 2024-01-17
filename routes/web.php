@@ -1,11 +1,12 @@
 <?php
-
-use App\Models\post;
-use App\Http\Controllers\PostController;
+ 
 use App\Models\Category;
-use App\Models\User;
 use Clockwork\Request\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginControler;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterController;
+
 
 
 /*
@@ -50,6 +51,17 @@ route::get('/categories', function () {
         'categories' => Category::all()
     ]);
 });
+
+Route::get('/login', [LoginControler::class,'index']);
+
+Route::get('/register', [RegisterController::class, 'index']);
+
+
+
+
+
+
+
 // route::get('/blog', function () {
 //     return view('Post', [
 //         'title' => 'All Post',
