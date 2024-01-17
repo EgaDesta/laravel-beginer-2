@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginControler;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
-
-
+use App\Http\Controllers\DashboardController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,34 +52,11 @@ route::get('/categories', function () {
     ]);
 });
 
-Route::get('/login', [LoginControler::class,'index']);
+Route::get('/login', [LoginControler::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginControler::class,'authenticate']);
+Route::post('/logout', [LoginControler::class,'logout']);
 
-Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-
-
-
-
-
-
-// route::get('/blog', function () {
-//     return view('Post', [
-//         'title' => 'All Post',
-//         'posts' => Post::all()
-//     ]);
-// });
-
-// Route::get('/categories/{category:slug}', function (Category $category) {
-//     return view('post', [
-//         'title' => "Post By Category :$category->name",
-//         'posts' => $category->posts->load('category', 'author'),
-//     ]);
-// });
-
-// Route::get('/authors/{author:username}', function (User $author) {
-//     return view('post', [
-//         'title' => "Post By Author : $author->name",
-//         'posts' => $author->posts->load('category', 'author'),
-//     ]);
-// });
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
