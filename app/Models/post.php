@@ -49,12 +49,6 @@ class Post extends Model
                 $query->where('username', $filters['author']);
             });
         });
-
-        // $query->when(isset($filters['author']), function ($query) use ($author) {
-        //     $query->whereHas('author', function ($query) use ($author) {
-        //         $query->where('username', $author);
-        //     });
-        // });
         
    }
     public function category()
@@ -66,27 +60,9 @@ class Post extends Model
     {
         return $this->belongsTo(user::class, 'user_id');
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
-
-        // $query->when($filters['search'], function($query, $search) {
-        //     return $query->where('title', 'like', '%' . $search . '%')
-        //                  ->orWhere('body', 'like', '%' . $search . '%');
-        // });
-
-        // $query->when($filters['category'], function($query, $category) {
-        //     return $query->whereHas('category', function ($query) use ($category){
-        //         $query->where('slug', $category);
-        //     });
-        // }); 
-
-         // $query->when(isset($filters['search']), function($query, $search) {
-        //     return $query->where('title', 'like', '%' . $search . '%')
-        //                  ->orWhere('body', 'like', '%' . $search . '%');
-        // });
-    
-        // $query->when(isset($filters['category']), function($query, $category) {
-        //     return $query->whereHas('category', function ($query) use ($category){
-        //         $query->where('slug', $category);
-        //     });
-        // });
-         
