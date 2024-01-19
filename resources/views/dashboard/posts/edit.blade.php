@@ -6,7 +6,7 @@
             <h1 class="h2">edit post</h1>
         </div>
         <div class="col-lg-8 mb-3">
-            <form method="POST" action="/dashboard/posts/{{ $post->slug }}">
+            <form method="POST" action="/dashboard/posts/{{ $post->slug }}" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="mb-3">
@@ -41,6 +41,24 @@
                         @endforeach
                     </select>
                 </div>
+
+            
+                <div class="mb-3">
+                    <label for="image" class="form-label">Post image</label>
+                    <input type="hidden" name="oldImage" value="{{ $post->image }}">
+                    @if($post->image)
+                    <img src="{{ asset("storage/" . $post->image) }}" class="img-fluid mb-3 col-sm-5 d-block">
+                    @else
+                         <img class="img-preview img-fluid" style="display: none;">
+                    @endif
+                    <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
+                    @error('image')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
                 <div class="mb-3">
                     <label for="body" class="form-label">Body</label>
                     @error('body') 
@@ -67,6 +85,25 @@
 
         trix.addEventListener('trix-change', function() {
             // You may want to handle changes in the trix editor here
-        });
+        })
+
+        function previewImage() {
+    const imageInput = document.querySelector('#image');
+    const imgPreview = document.querySelector('.img-preview');
+
+    if (imageInput.files && imageInput.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            imgPreview.src = e.target.result;
+        };
+
+        reader.readAsDataURL(imageInput.files[0]);
+        imgPreview.style.display = "block";
+    } else {
+        imgPreview.style.display = "none";
+        imgPreview.src = "";
+    }
+}
     </script>
 @endsection

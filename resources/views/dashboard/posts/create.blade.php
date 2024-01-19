@@ -42,14 +42,15 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="image" class="form-label">Choose your images</label>
-                    <input class="form-control" type="file" @error('image') is-invalid @enderror id="image" name="image">
+                    <label for="image" class="form-label">Choose your image</label>
+                    <img class="img-preview img-fluid mb-3 col-sm-5 d-block" style="display: none;">
+                    <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
                     @error('image')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
                     @enderror
-                  </div>  
+                </div>
 
                 <div class="mb-3">
                     <label for="body" class="form-label">Body</label>
@@ -77,6 +78,25 @@
 
         trix.addEventListener('trix-change', function() {
             // You may want to handle changes in the trix editor here
-        });
+        })
+
+        function previewImage() {
+    const imageInput = document.querySelector('#image');
+    const imgPreview = document.querySelector('.img-preview');
+
+    if (imageInput.files && imageInput.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            imgPreview.src = e.target.result;
+        };
+
+        reader.readAsDataURL(imageInput.files[0]);
+        imgPreview.style.display = "block";
+    } else {
+        imgPreview.style.display = "none";
+        imgPreview.src = "";
+    }
+}
     </script>
 @endsection

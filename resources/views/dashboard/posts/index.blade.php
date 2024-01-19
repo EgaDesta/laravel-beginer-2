@@ -33,11 +33,13 @@
                             <td>
                               <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info"> <span data-feather="eye">eye</span></a>
                               <a href="/dashboard/posts/{{ $post->slug }}/edit" class="badge bg-warning"> <span data-feather="edit"></span>YY</a>
-                              <form action="/dashboard/posts/{{ $post->slug }}" method="POST " class="d-inline">
-                                @method('delete')
+                              <form action="/dashboard/posts/{{ $post->slug }}" method="POST" class="d-inline">
+                                @method('DELETE')
                                 @csrf
-                                <button class="badge bg-danger border-0" onclick="return confirm('Are you dumb?')"> <span data-feather="x-circle">X</button>
-                              </form>
+                                <button type="submit" class="badge bg-danger border-0" onclick="return confirm('Are you sure?')">
+                                    <span data-feather="x-circle">X</span>
+                                </button>
+                            </form>
                             </td>
                         </tr>
                     @endforeach
