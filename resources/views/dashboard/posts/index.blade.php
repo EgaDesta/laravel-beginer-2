@@ -40,6 +40,7 @@
                                     <span data-feather="x-circle">X</span>
                                 </button>
                             </form>
+
                             </td>
                         </tr>
                     @endforeach
